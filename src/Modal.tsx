@@ -1,10 +1,17 @@
+import type { FC } from "react";
 import "./Modal.css";
 
-export default function Modal({
+type ModalProps = {
+    title?: string;
+    text?: string;
+    onClose?: () => void;
+};
+
+const Modal: FC<ModalProps> = ({
     title = "Modal",
     text = "Are you sure?",
-    onClose,
-}) {
+    onClose = () => {},
+}) => {
     return (
         <div className="Modal">
             <div className="Modal-content">
@@ -24,4 +31,6 @@ export default function Modal({
             </div>
         </div>
     );
-}
+};
+
+export default Modal;
