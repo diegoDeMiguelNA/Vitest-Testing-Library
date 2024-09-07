@@ -1,9 +1,8 @@
-import { vi } from "vitest";
+import { vi, expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
 import Modal from "./Modal";
-const fn = vi.fn();
 
 test("Renders the Modal with the default labels", () => {
     render(<Modal />);
