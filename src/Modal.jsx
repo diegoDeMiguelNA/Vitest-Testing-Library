@@ -13,12 +13,12 @@ export default function Modal({
                     onClick={onClose}
                     aria-label="Close"
                 >
-                    Close
+                    &times;
                 </button>
                 <h2>{title}</h2>
                 <p>{text}</p>
                 <div className="Modal-actions">
-                    <button>Ok</button>
+                    <button className="primary">Ok</button>
                     <button>Cancel</button>
                 </div>
             </div>

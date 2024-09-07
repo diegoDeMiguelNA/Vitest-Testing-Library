@@ -5,7 +5,7 @@
   right: 0;
   bottom: 0;
   z-index: 1;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, .7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,11 +31,22 @@
   gap: 1rem;
 }
 
+.Modal-actions .primary {
+  background-color: var(--accent-color);
+}
+
 .Modal-close {
   position: absolute;
   top: -1rem;
   right: -1rem;
-  padding: .5rem;
+  padding: 0;
+  border: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
   display: flex;
   justify-content: center;
   align-items: center;
