@@ -169,7 +169,7 @@ Testing pure functions is easy: it's all about checking what they return dependi
 Let's have a look at our `Modal` component:
 
 ```tsx
-port type { FC } from "react";
+import type { FC } from "react";
 
 type ModalProps = {
     title?: string;
