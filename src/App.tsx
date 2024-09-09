@@ -9,10 +9,14 @@ function App() {
         setShowModal(false);
     }
 
+    function openModal() {
+        setShowModal(true);
+    }
+
     return (
         <div className="app">
-            <h1>Testing Library example</h1>
-            <button onClick={() => setShowModal(true)}>Show Modal</button>
+            <h1>Testing Library Example</h1>
+            <button onClick={openModal}>Show Modal</button>
             {showModal && <Modal onClose={onClose} />}
         </div>
     );
