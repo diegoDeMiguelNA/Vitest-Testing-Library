@@ -32,12 +32,20 @@ test('Renders "Waiting for user interaction" when rendering App.tsx', () => {
   expect(screen.getByText("Waiting for user interaction")).toBeDefined();
 });
 
-test("Calls the onConfirm handler when clicked", () => {
+test("Calls the 'onConfirm' handler when clicked", () => {
   const onConfirm = vi.fn();
   render(<Modal onConfirm={onConfirm} />);
   const button = screen.getByRole("button", { name: "Ok" });
   fireEvent.click(button);
   expect(onConfirm).toHaveBeenCalled();
+});
+
+test("Calls the 'onCancel' handler when clicked", () => {
+  const onCancel = vi.fn();
+  render(<Modal onCancel={onCancel} />);
+  const button = screen.getByRole("button", { name: "Cancel" });
+  fireEvent.click(button);
+  expect(onCancel).toHaveBeenCalled();
 });
 
 test('Renders "Action Successful" when clicking Ok button', () => {
@@ -46,4 +54,12 @@ test('Renders "Action Successful" when clicking Ok button', () => {
   const okButton = screen.getByRole("button", { name: /Ok/i });
   fireEvent.click(okButton);
   expect(screen.getByText("Action Successful")).toBeInTheDocument();
+});
+
+test('Renders "Action Canceled" when clicking Cancel button', () => {
+  render(<App />);
+  fireEvent.click(screen.getByText(/Show Modal/i));
+  const okButton = screen.getByRole("button", { name: /Cancel/i });
+  fireEvent.click(okButton);
+  expect(screen.getByText("Action Canceled")).toBeInTheDocument();
 });
