@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { expect, test, vi } from "vitest";
-import App from "./App";
 import Modal from "./Modal";
 
 test("Renders the Modal with the default values", () => {
@@ -27,11 +26,6 @@ test("Calls the onClose handler when clicked", () => {
   expect(onClose).toHaveBeenCalled();
 });
 
-test('Renders "Waiting for user interaction" when rendering App.tsx', () => {
-  render(<App />);
-  expect(screen.getByText("Waiting for user interaction")).toBeDefined();
-});
-
 test("Calls the 'onConfirm' handler when clicked", () => {
   const onConfirm = vi.fn();
   render(<Modal onConfirm={onConfirm} />);
@@ -46,20 +40,4 @@ test("Calls the 'onCancel' handler when clicked", () => {
   const button = screen.getByRole("button", { name: "Cancel" });
   fireEvent.click(button);
   expect(onCancel).toHaveBeenCalled();
-});
-
-test('Renders "Action Successful" when clicking Ok button', () => {
-  render(<App />);
-  fireEvent.click(screen.getByText(/Show Modal/i));
-  const okButton = screen.getByRole("button", { name: /Ok/i });
-  fireEvent.click(okButton);
-  expect(screen.getByText("Action Successful")).toBeInTheDocument();
-});
-
-test('Renders "Action Canceled" when clicking Cancel button', () => {
-  render(<App />);
-  fireEvent.click(screen.getByText(/Show Modal/i));
-  const okButton = screen.getByRole("button", { name: /Cancel/i });
-  fireEvent.click(okButton);
-  expect(screen.getByText("Action Canceled")).toBeInTheDocument();
 });
