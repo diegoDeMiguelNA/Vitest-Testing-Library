@@ -6,6 +6,7 @@ type ModalProps = {
   text?: string;
   onClose?: () => void;
   onConfirm?: () => void;
+  onCancel?: () => void;
 };
 
 const Modal: FC<ModalProps> = ({
@@ -13,6 +14,7 @@ const Modal: FC<ModalProps> = ({
   text = "Are you sure?",
   onClose = () => {},
   onConfirm = () => {},
+  onCancel = () => {},
 }) => {
   return (
     <div className="Modal">
@@ -26,7 +28,9 @@ const Modal: FC<ModalProps> = ({
           <button aria-label="Ok" onClick={onConfirm} className="primary">
             Ok
           </button>
-          <button>Cancel</button>
+          <button aria-label="Cancel" onClick={onCancel}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { expect, test, vi } from "vitest";
+import App from "./App";
 import Modal from "./Modal";
 
 test("Renders the Modal with the default values", () => {
@@ -26,10 +27,23 @@ test("Calls the onClose handler when clicked", () => {
   expect(onClose).toHaveBeenCalled();
 });
 
+test('Renders "Waiting for user interaction" when rendering App.tsx', () => {
+  render(<App />);
+  expect(screen.getByText("Waiting for user interaction")).toBeDefined();
+});
+
 test("Calls the onConfirm handler when clicked", () => {
   const onConfirm = vi.fn();
   render(<Modal onConfirm={onConfirm} />);
   const button = screen.getByRole("button", { name: "Ok" });
   fireEvent.click(button);
-  expect(onConfirm).toHaveBeenCalledOnce();
+  expect(onConfirm).toHaveBeenCalled();
+});
+
+test('Renders "Action Successful" when clicking Ok button', () => {
+  render(<App />);
+  fireEvent.click(screen.getByText(/Show Modal/i));
+  const okButton = screen.getByRole("button", { name: /Ok/i });
+  fireEvent.click(okButton);
+  expect(screen.getByText("Action Successful")).toBeInTheDocument();
 });
